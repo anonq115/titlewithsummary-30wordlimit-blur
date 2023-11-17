@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .container {
+            position: relative;
+            width: 459px; /* Adjust as needed */
+            height: 50px; /* Adjust as needed */
+        }
+
+        .title {
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 20px; /* Adjust as needed */
+        }
+
+        .blur-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(10px); /* Adjust blur as needed */
+            display: none; /* Initially hidden */
+            background-color: rgba(255, 255, 255, 0.4); /* Adjust opacity as needed */
+            z-index: 10; /* Ensure it's under the summary text */
+        }
+
+        .summary {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            z-index: 20; /* Above the blur background */
+            display: none; /* Initially hidden */
+            border-right: 3px solid; /* Simulates the cursor */
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: black; }
+        }
+
+        .summary {
+            animation: typing 2s steps(30, end), blink-caret .75s step-end infinite;
+        }
+
+        .blur-background {
+            animation: typing 2s steps(30, end); /* Sync with summary */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">soon unneccessary long bullshit will be a thing of the past</div>
+        <div class="blur-background"></div>
+        <div class="summary">meows it going?</div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                var blurBackground = document.querySelector('.blur-background');
+                var summary = document.querySelector('.summary');
+
+                blurBackground.style.display = 'block';
+                summary.style.display = 'block';
+            }, 1500); // Delay before starting the typing effect
+        });
+    </script>
+</body>
+</html>
